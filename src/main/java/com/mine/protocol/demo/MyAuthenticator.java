@@ -38,7 +38,7 @@ public class MyAuthenticator implements Authenticator {
             if (platformPwd == null){
                 throw new AuthenticationException(61002, "设备秘钥未配置");
             }
-            platformPwd = encryptMD5(platformPwd);
+                platformPwd = encryptMD5(platformPwd);
             if (!platformPwd.equals(password)){
                 throw new AuthenticationException(61001, "用户名或密码错误");
             }
@@ -62,5 +62,9 @@ public class MyAuthenticator implements Authenticator {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("MD5加密失败", e);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new MyAuthenticator().encryptMD5("ys0001"));
     }
 }

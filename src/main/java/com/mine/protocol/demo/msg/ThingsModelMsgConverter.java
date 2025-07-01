@@ -53,14 +53,16 @@ public class ThingsModelMsgConverter {
             TagTypeLenValue tagTypeLenValue = new TagTypeLenValue();
             tagTypeLenValue.setId(TslEnum.ERR_OVERHEAT.id);
             tagTypeLenValue.setType(TslEnum.ERR_OVERHEAT.type);
+            List<TagTypeLenValue> values = new ArrayList<>();
             TagTypeLenValue value = new TagTypeLenValue();
             SEVERITY severity = SEVERITY.getByCode(deviceErrorMsg.getSeverity());
             if (severity != null) {
                 value.setId(severity.id);
                 value.setType("enum");
                 value.setValue(severity.value);
-                tagTypeLenValue.setValue(value);
+                values.add(value);
             }
+            tagTypeLenValue.setValue(values);
             tagTypeLenValues.add(tagTypeLenValue);
         }
         thingModelMessage.setMessage(tagTypeLenValues);
